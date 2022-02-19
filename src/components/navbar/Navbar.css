@@ -1,0 +1,31 @@
+.nav-link {
+    color: var(--blue) !important;
+
+}
+.nav-link:hover{
+    color: var(--dark-blue) !important;
+}
+.my-profile{
+    /* margin-left: 800px !important; */
+}
+.navbar-brand:hover{
+    color: var(--blue) !important;
+}
+.navbar-brand:hover{
+    color: "#0e8d9c" 
+}
+.upload-btn:hover{
+    color: white;
+    background-color: var(--blue)
+
+}
+.upload-btn{
+    color: white;
+    padding:5px;
+    border-radius: 5px;
+    background: var(--light-blue);
+    border-style: none;
+    justify-content: center;
+    align-items: center;
+    margin-top:2px
+}

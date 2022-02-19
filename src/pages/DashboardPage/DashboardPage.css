@@ -1,0 +1,40 @@
+.dashboard-header{
+    background-image: linear-gradient(to right top, #75e0c4, #6dddc9, #67dacd, #62d6d1, #5ed3d4);
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+    gap: 1rem;
+}
+.dashboard-container-box{
+    width: 80%;
+    margin-top: 1rem;
+}
+
+.dashboard-profile-image{
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+}
+.dashboard-profile-btn{
+    border-style: none;
+    padding:0.5rem;
+    font-size:1rem;
+    color: white;
+    background-color: var(--light-blue);
+    border-radius:5px;
+}
+.dashboard-profile-btn:hover{
+    color: var(--blue);
+    background-color: white
+}
+
+@media (width<=768px) {
+    .dashboard-profile-image{
+        width: 100px;
+        height: 100px;
+    }
+    .dashboard-tabs{
+        font-size: 0.85rem;
+        overflow: auto;
+    }
+}
