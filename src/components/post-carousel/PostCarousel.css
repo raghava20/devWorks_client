@@ -1,0 +1,26 @@
+.post-carousel-container {
+    padding: 1rem;
+  }
+  
+  .slides {
+    padding: 2rem;
+    padding-bottom: 0.5rem;
+    border-radius: 20px;
+  }
+
+  .slides img {
+    border-radius: 20px;
+  }
+
+  @media screen and (max-width: 900px) {
+    .post-carousel-container {
+      padding: 1rem 2.25rem;
+    }
+    .slides {
+      padding: 0rem;
+      border-radius: 10px;
+    }
+    .slides img {
+      border-radius: 10px;
+    }
+  }

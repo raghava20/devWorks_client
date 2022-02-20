@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+.leftpane-container {
+    background: var(--blue);
+    min-height: 100vh;
+}
+.leftpane-container .text-container {
+    padding: 3rem;
+}
+.leftpane-container .text-container .logo {
+    color: var(--dark-blue);
+    font-family: 'Kaushan Script', cursive;
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+@media screen and (max-width: 1000px) {
+    .leftpane-container {
+      display: none;
+    }
+  }

@@ -1,0 +1,13 @@
+.profile-tabs-contents {
+    display: none;
+  }
+  .dashboard-tabs a.active{
+    color: var(--dark-blue);
+  }
+
+@media (width<=768px) {
+    .profile-tabs{
+        font-size: 0.85rem;
+        overflow: auto;
+    }
+}
