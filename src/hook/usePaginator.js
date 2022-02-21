@@ -29,7 +29,9 @@ function usePaginator(values = []) {
         }));
     };
 
-    useEffect(updateItems, [values, page.currentPage]);
+    useEffect(() => {
+        updateItems()
+    }, [values, page.currentPage]);
 
     return {
         items: page.items,
