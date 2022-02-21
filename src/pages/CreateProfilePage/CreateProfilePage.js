@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
+import { createProfile } from "../../redux/profile/profile.actions"
+import WithRouter from "../../hook/withRouter"
+import LeftPane from "../../components/left-pane/LeftPane"
+import { connect } from "react-redux"
+import ProfileInput from "../../components/profile-input/ProfileInput"
 
-
-export default function CreateProfilePage() {
+const CreateProfilePage = ({ createProfile, navigate }) => {
     const [formData, setFormData] = useState({
         bio: null,
         website: null,
         location: null,
+        skills: null,
         githubUserName: null,
         twitter: null,
         linkedIn: null,
@@ -13,16 +18,21 @@ export default function CreateProfilePage() {
         github: null
     })
 
-    const { bio, website, location, githubUserName, twitter, linkedIn, codepen, github } = formData
+    const { bio, website, location, skills, githubUserName, twitter, linkedIn, codepen, github } = formData
+
+    const onChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
+        createProfile(formData, navigate)
     }
 
     return (
         <section>
             <div>
-                {/*  */}
+                <LeftPane>An attractive Profile might be stand out from the screen.</LeftPane>
                 <div>
                     <div>
                         <h1>Create Profile</h1>
@@ -32,7 +42,7 @@ export default function CreateProfilePage() {
                                     <label>Bio</label>
                                 </div>
                                 <div>
-                                    <textarea placeholder="React Developer" row="2"></textarea>
+                                    <textarea placeholder="React Developer" row="2" name="bio" value={bio} onChange={(e) => onChange(e)}></textarea>
                                 </div>
                             </div>
                             <div>
@@ -40,10 +50,12 @@ export default function CreateProfilePage() {
                                     <label>Skills</label>
                                 </div>
                                 <div>
-                                    <span >
-                                        <i className="fas fa-laptop-code"></i>
-                                    </span>
-                                    <input placeholder="React,Angular,Vue" required />
+                                    <ProfileInput
+                                        placeholder="React,Angular,Vue..."
+                                        name="skills" icon="fas fa-laptop-code"
+                                        value={skills} onChange={onChange}
+                                        smallText="Please seperate each skill using a comma"
+                                    ></ProfileInput>
                                 </div>
                             </div>
                             <div>
@@ -51,10 +63,12 @@ export default function CreateProfilePage() {
                                     <label>Location</label>
                                 </div>
                                 <div>
-                                    <span >
-                                        <i className="fas fa-map-marker-alt"></i>
-                                    </span>
-                                    <input placeholder="Tamil Nadu, India" />
+                                    <ProfileInput
+                                        placeholder="Tamil Nadu, India"
+                                        name="location" icon="fas fa-map-marker-alt"
+                                        value={location}
+                                        onChange={onChange}
+                                    ></ProfileInput>
                                 </div>
                             </div>
                             <div>
@@ -70,6 +84,18 @@ export default function CreateProfilePage() {
                                         <i className="fab fa-github"></i>
                                     </span>
                                     <input placeholder="GitHub Username" />
+                                    <ProfileInput
+                                        placeholder="geeks.net" name="website"
+                                        icon="fas fa-globe" value={website}
+                                        onChange={onChange}
+                                    ></ProfileInput>
+                                    <ProfileInput
+                                        placeholder="Github Username" name="githubUserName"
+                                        icon="fas fa-github" value={githubUserName}
+                                        onChange={onChange}
+                                        smallText="This will be used to fetch your repos"
+                                    ></ProfileInput>
+
                                 </div>
                             </div>
                             <div>
@@ -77,26 +103,30 @@ export default function CreateProfilePage() {
                                     <label>Social</label>
                                 </div>
                                 <div>
-                                    <span >
-                                        <i className="fab fa-twitter"></i>
-                                    </span>
-                                    <input placeholder="Twitter profile" />
-                                    <span >
-                                        <i className="fab fa-linkedin"></i>
-                                    </span>
-                                    <input placeholder="LinkedIn profile" />
+                                    <ProfileInput
+                                        placeholder="Twitter profile"
+                                        name="twitter" icon="fab fa-twitter"
+                                        value={twitter} onChange={onChange}
+                                    ></ProfileInput>
+                                    <ProfileInput
+                                        placeholder="LinkedIn profile"
+                                        name="linkedIn" icon="fab fa-linkedin"
+                                        value={linkedIn} onChange={onChange}
+                                    ></ProfileInput>
                                 </div>
                             </div><div>
 
                                 <div>
-                                    <span >
-                                        <i className="fas fa-codepen"></i>
-                                    </span>
-                                    <input placeholder="Codepen profile" />
-                                    <span >
-                                        <i className="fab fa-github"></i>
-                                    </span>
-                                    <input placeholder="GitHub profile" />
+                                    <ProfileInput
+                                        placeholder="Codepen profile"
+                                        name="codepen" icon="fas fa-codepen"
+                                        value={codepen} onChange={onChange}
+                                    ></ProfileInput>
+                                    <ProfileInput
+                                        placeholder="GitHub profile"
+                                        name="github" icon="fab fa-github"
+                                        value={github} onChange={onChange}
+                                    ></ProfileInput>
                                 </div>
                             </div>
                             <div>
@@ -109,3 +139,5 @@ export default function CreateProfilePage() {
         </section>
     )
 }
+
+export default connect(null, { createProfile })(WithRouter(CreateProfilePage))

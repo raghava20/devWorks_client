@@ -5,11 +5,12 @@ import {
     UPDATE_LIKES, ADD_COMMENT, REMOVE_COMMENT, DELETE_POST
 } from "./post.types"
 import { useNavigate } from "react-router-dom"
+import { API_URL } from "../../components/API_URL/API_URL"
 
 // to get current user feed
 export const getFeed = () => async (dispatch) => {
     try {
-        const result = await axios.get("/posts/feed");
+        const result = await axios.get(`${API_URL}/posts/feed`);
         dispatch({
             type: GET_POSTS,
             payload: result.data
@@ -33,7 +34,7 @@ export const addPost = (formData) => async (dispatch) => {
     try {
         const navigate = useNavigate()
         dispatch({ type: ADD_POST_REQUEST })
-        const result = await axios.post("/posts", formData, config);
+        const result = await axios.post(`${API_URL}/posts`, formData, config);
         dispatch({
             type: ADD_POST,
             payload: result.data
@@ -56,7 +57,7 @@ export const addPost = (formData) => async (dispatch) => {
 // Get post by Id
 export const getPostById = (postId) => async (dispatch) => {
     try {
-        const result = await axios.get(`/posts/${postId}`)
+        const result = await axios.get(`${API_URL}/posts/${postId}`)
         dispatch({
             type: GET_POST,
             payload: result.data
@@ -76,7 +77,7 @@ export const getPostById = (postId) => async (dispatch) => {
 // Add like using Id
 export const addLike = (postId) => async (dispatch) => {
     try {
-        const result = await axios.put(`/posts/like/${postId}`)
+        const result = await axios.put(`${API_URL}/posts/like/${postId}`)
         dispatch({
             type: UPDATE_LIKES,
             payload: { postId, likes: result.data }
@@ -93,7 +94,7 @@ export const addLike = (postId) => async (dispatch) => {
 // Remove like using Id
 export const removeLike = (postId) => async (dispatch) => {
     try {
-        const result = await axios.put(`/posts/unlike/${postId}`)
+        const result = await axios.put(`${API_URL}/posts/unlike/${postId}`)
         dispatch({
             type: UPDATE_LIKES,
             payload: { postId, likes: result.data }
@@ -115,7 +116,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
         }
     }
     try {
-        const result = await axios.post(`/posts/comment/${postId}`, formData, config)
+        const result = await axios.post(`${API_URL}/posts/comment/${postId}`, formData, config)
         dispatch({
             type: ADD_COMMENT,
             payload: result.data
@@ -137,7 +138,7 @@ export const addComment = (postId, formData) => async (dispatch) => {
 // Delete a comment by Id
 export const deleteComment = (postId, commentId) => async (dispatch) => {
     try {
-        await axios.delete(`/posts/comment/${postId}/${commentId}`)
+        await axios.delete(`${API_URL}/posts/comment/${postId}/${commentId}`)
         dispatch({
             type: REMOVE_COMMENT,
             payload: commentId
@@ -155,7 +156,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
 // Delete a post by id
 export const deletePost = (postId) => async (dispatch) => {
     try {
-        await axios.delete(`/posts/${postId}`)
+        await axios.delete(`${API_URL}/posts/${postId}`)
         dispatch({
             type: DELETE_POST,
             payload: postId

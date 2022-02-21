@@ -2,13 +2,14 @@ import axios from "axios"
 import { GET_PROFILE, GET_PROFILES, PROFILE_ERROR, GET_REPOS, CLEAR_PROFILE } from "./profile.types"
 import { setAlert } from "../alert/alert.actions"
 import { useNavigate } from "react-router-dom"
+import { API_URL } from "../../components/API_URL/API_URL"
 
 // Get current user profile
 export const getCurrentUserProfile = () => async (dispatch) => {
     dispatch({ type: CLEAR_PROFILE })
     try {
 
-        const result = await axios.get("/profile/me");
+        const result = await axios.get(`${API_URL}/profile/me`);
         dispatch({
             type: GET_PROFILE,
             payload: result.data
@@ -25,7 +26,7 @@ export const getCurrentUserProfile = () => async (dispatch) => {
 // Create or update the profile
 export const createProfile = (formData, edit = false) => async (dispatch) => {
     try {
-        const result = await axios.get("/profile", formData)
+        const result = await axios.get(`${API_URL}/profile`, formData)
         dispatch({
             type: GET_PROFILE,
             payload: result.data
@@ -45,7 +46,7 @@ export const createProfile = (formData, edit = false) => async (dispatch) => {
 // Get all profiles
 export const getAllProfiles = () => async (dispatch) => {
     try {
-        const result = await axios.get("/profile")
+        const result = await axios.get(`${API_URL}/profile`)
         dispatch({ type: CLEAR_PROFILE })
         dispatch({
             type: GET_PROFILES,
@@ -66,7 +67,7 @@ export const getAllProfiles = () => async (dispatch) => {
 // Get profile by Id
 export const getProfileById = (userId) => async (dispatch) => {
     try {
-        const result = await axios.get(`/profile/${userId}`)
+        const result = await axios.get(`${API_URL}/profile/${userId}`)
         dispatch({
             type: GET_PROFILE,
             payload: result.data
@@ -83,7 +84,7 @@ export const getProfileById = (userId) => async (dispatch) => {
 // Get github repo
 export const getGithubRepo = (username) => async (dispatch) => {
     try {
-        const result = await axios.get(`/profile/github/${username}`)
+        const result = await axios.get(`${API_URL}/profile/github/${username}`)
         dispatch({
             type: GET_REPOS,
             payload: result.data

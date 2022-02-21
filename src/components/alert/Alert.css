@@ -7,3 +7,13 @@
     border-radius: 0;
     z-index: 100;
   }
+
+  .notification .is-success {
+    background-color: rgb(71, 179, 71);
+    color: white;
+  }
+
+  .notification .is-danger{
+    background-color: rgb(201, 68, 68);
+    color: white;
+  }

@@ -10,11 +10,11 @@ const ProfileInput = ({
 }) => {
     return (
         <div className="profile-input">
-            <p className="profile-input-left">
+            <p className="profile-input-right">
                 <input className="input" type="text" placeholder={placeholder} value={value || ""} name={name}
                     onChange={(e) => onChange(e)}
                 />
-                <span className="profile-input-icon ">
+                <span className="profile-input-icon-left ">
                     <i className={icon}></i>
                 </span>
             </p>

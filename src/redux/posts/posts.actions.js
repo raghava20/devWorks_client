@@ -1,10 +1,11 @@
 import axios from "axios"
 import { GET_POSTS, CLEAR_POST, POST_ERROR } from "./posts.types"
+import { API_URL } from "../../components/API_URL/API_URL"
 
 // Get all the posts
 export const getAllPosts = () => async (dispatch) => {
     try {
-        const result = await axios.get("/posts")
+        const result = await axios.get(`${API_URL}/posts`)
         dispatch({ type: CLEAR_POST })
         dispatch({
             type: GET_POSTS,
@@ -22,7 +23,7 @@ export const getAllPosts = () => async (dispatch) => {
 // Get all post by userId
 export const getUserPostById = (userId) => async (dispatch) => {
     try {
-        const result = await axios.get(`/posts/user/${userId}`)
+        const result = await axios.get(`${API_URL}/posts/user/${userId}`)
         dispatch({
             type: GET_POSTS,
             payload: result.data

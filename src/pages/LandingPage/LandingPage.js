@@ -1,7 +1,26 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { ReactComponent as LandingImage } from "../../images/landingpage.svg"
+import DefaultLayout from "../../layouts/DefaultLayout"
 
-export default function LandingPage() {
+const LandingPage = ({ isAuthenticated }) => {
+    let navigate = useNavigate()
+    if (isAuthenticated) {
+        return navigate("/dashboard")
+    }
+
     return (
-        <div>LandingPage</div>
+        <DefaultLayout>
+            <div>
+                <LandingImage id="landing-image" />
+            </div>
+        </DefaultLayout>
     )
 }
+
+const mapStateToProps = (state) => ({
+    isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps)(LandingPage)

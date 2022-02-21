@@ -7,6 +7,8 @@ import {
 import setAuthToken from "../../auth/setAuthToken"
 import { CLEAR_PROFILE } from "../profile/profile.types"
 import { setAlert } from "../alert/alert.actions"
+import { API_URL } from "../../components/API_URL/API_URL"
+
 
 // Load user by getting token
 export const loadUser = () => async (dispatch) => {
@@ -14,7 +16,7 @@ export const loadUser = () => async (dispatch) => {
         setAuthToken(localStorage.token)
     }
     try {
-        const result = await axios.get("/auth");
+        const result = await axios.get(`${API_URL}/auth`);
         dispatch({
             type: USER_LOADED,
             payload: result.data
@@ -40,7 +42,7 @@ export const signupUser = ({ name, email, password }) => async (dispatch) => {
         dispatch({
             type: SIGNUP_REQUEST
         })
-        const result = await axios.post("/users", body, config)
+        const result = await axios.post(`${API_URL}/users`, body, config)
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: result.data
@@ -71,7 +73,7 @@ export const loginUser = ({ email, password }) => async (dispatch) => {
     const body = JSON.stringify({ email, password })
     try {
         dispatch({ type: LOGIN_REQUEST })
-        const result = await axios.post('/auth', body, config)
+        const result = await axios.post(`${API_URL}/auth`, body, config)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: result.data

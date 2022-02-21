@@ -16,3 +16,5 @@ const FollowList = ({ list, parent }) => {
 
     </>
 }
+
+export default FollowList;

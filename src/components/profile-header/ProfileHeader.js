@@ -3,15 +3,17 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./ProfileHeader.css";
+import { API_URL } from "../../components/API_URL/API_URL"
+
 
 const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
     const followUser = async () => {
-        await axios.put(`/profile/follow/${id}`);
+        await axios.put(`${API_URL}/profile/follow/${id}`);
         window.location.reload(false);
     };
 
     const unfollowUser = async () => {
-        await axios.put(`/profile/unfollow/${id}`);
+        await axios.put(`${API_URL}/profile/unfollow/${id}`);
         window.location.reload(false);
     };
 

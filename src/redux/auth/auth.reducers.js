@@ -11,7 +11,7 @@ const initialState = {
     user: null
 }
 
-export default function d(state = initialState, action) {
+export default function (state = initialState, action) {
     const { type, payload } = action
     switch (type) {
         case USER_LOADED:
