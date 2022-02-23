@@ -1,4 +1,5 @@
 import React from "react";
+import "./ProfileInput.css"
 
 const ProfileInput = ({
     placeholder,
@@ -10,15 +11,13 @@ const ProfileInput = ({
 }) => {
     return (
         <div className="profile-input">
-            <p className="profile-input-right">
-                <input className="input" type="text" placeholder={placeholder} value={value || ""} name={name}
-                    onChange={(e) => onChange(e)}
-                />
-                <span className="profile-input-icon-left ">
-                    <i className={icon}></i>
-                </span>
-            </p>
-            <p className="helper-text">{smallText}</p>
+            <input className="input" type="text" placeholder={placeholder} value={value || ""} name={name}
+                onChange={(e) => onChange(e)}
+            />
+            <span>
+                <i className={icon}></i>
+            </span>
+            <p className="helper-text text-muted">{smallText}</p>
         </div>
     );
 };

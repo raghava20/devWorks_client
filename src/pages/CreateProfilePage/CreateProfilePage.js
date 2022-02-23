@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { createProfile } from "../../redux/profile/profile.actions"
 import WithRouter from "../../hook/withRouter"
-import LeftPane from "../../components/left-pane/LeftPane"
+import AuthLeftPane from "../../components/left-pane/AuthLeftPane"
 import { connect } from "react-redux"
 import ProfileInput from "../../components/profile-input/ProfileInput"
+import "./CreateProfilePage.css"
 
 const CreateProfilePage = ({ createProfile, navigate }) => {
     const [formData, setFormData] = useState({
@@ -30,112 +31,110 @@ const CreateProfilePage = ({ createProfile, navigate }) => {
     }
 
     return (
-        <section>
+        <section className="createprofile-container">
             <div>
-                <LeftPane>An attractive Profile might be stand out from the screen.</LeftPane>
-                <div>
-                    <div>
-                        <h1>Create Profile</h1>
-                        <form onSubmit={(e) => onSubmit(e)}>
-                            <div>
-                                <div>
-                                    <label>Bio</label>
-                                </div>
-                                <div>
-                                    <textarea placeholder="React Developer" row="2" name="bio" value={bio} onChange={(e) => onChange(e)}></textarea>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <label>Skills</label>
-                                </div>
-                                <div>
-                                    <ProfileInput
-                                        placeholder="React,Angular,Vue..."
-                                        name="skills" icon="fas fa-laptop-code"
-                                        value={skills} onChange={onChange}
-                                        smallText="Please seperate each skill using a comma"
-                                    ></ProfileInput>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <label>Location</label>
-                                </div>
-                                <div>
-                                    <ProfileInput
-                                        placeholder="Tamil Nadu, India"
-                                        name="location" icon="fas fa-map-marker-alt"
-                                        value={location}
-                                        onChange={onChange}
-                                    ></ProfileInput>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <label>Website & GitHub</label>
-                                </div>
-                                <div>
-                                    <span >
-                                        <i className="fas fa-globe"></i>
-                                    </span>
-                                    <input placeholder="geeks.net" />
-                                    <span >
-                                        <i className="fab fa-github"></i>
-                                    </span>
-                                    <input placeholder="GitHub Username" />
-                                    <ProfileInput
-                                        placeholder="geeks.net" name="website"
-                                        icon="fas fa-globe" value={website}
-                                        onChange={onChange}
-                                    ></ProfileInput>
-                                    <ProfileInput
-                                        placeholder="Github Username" name="githubUserName"
-                                        icon="fas fa-github" value={githubUserName}
-                                        onChange={onChange}
-                                        smallText="This will be used to fetch your repos"
-                                    ></ProfileInput>
-
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <label>Social</label>
-                                </div>
-                                <div>
-                                    <ProfileInput
-                                        placeholder="Twitter profile"
-                                        name="twitter" icon="fab fa-twitter"
-                                        value={twitter} onChange={onChange}
-                                    ></ProfileInput>
-                                    <ProfileInput
-                                        placeholder="LinkedIn profile"
-                                        name="linkedIn" icon="fab fa-linkedin"
-                                        value={linkedIn} onChange={onChange}
-                                    ></ProfileInput>
-                                </div>
-                            </div><div>
-
-                                <div>
-                                    <ProfileInput
-                                        placeholder="Codepen profile"
-                                        name="codepen" icon="fas fa-codepen"
-                                        value={codepen} onChange={onChange}
-                                    ></ProfileInput>
-                                    <ProfileInput
-                                        placeholder="GitHub profile"
-                                        name="github" icon="fab fa-github"
-                                        value={github} onChange={onChange}
-                                    ></ProfileInput>
-                                </div>
-                            </div>
-                            <div>
-                                <button type="submit" >Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                <AuthLeftPane>An attractive Profile might be stand out from the screen.</AuthLeftPane>
             </div>
+            <div className="createprofile-main">
+                <div>
+                    <h1 className="createprofile-heading">Create Profile</h1>
+                </div>
+                <form onSubmit={(e) => onSubmit(e)}>
+                    <div className="createprofile-content">
+                        <label>Bio</label>
+                        <textarea className="p-1" placeholder="React Developer" row="2" name="bio" value={bio} onChange={(e) => onChange(e)}></textarea>
+                    </div>
+                    <div className="createprofile-content">
+                        <label>Skills</label>
+                        <ProfileInput
+                            placeholder="React,Angular,Vue..."
+                            name="skills" icon="fas fa-laptop-code"
+                            value={skills} onChange={onChange}
+                            smallText="Please seperate each skill using a comma"
+                        ></ProfileInput>
+                    </div>
+                    <div className="createprofile-content">
+                        <label>Location</label>
+
+                        <ProfileInput
+                            placeholder="Tamil Nadu, India"
+                            name="location" icon="fas fa-map-marker-alt"
+                            value={location}
+                            onChange={onChange}
+                        ></ProfileInput>
+
+                    </div>
+                    <div className="createprofile-content">
+
+                        <label>Website & GitHub</label>
+                        <div class="createprofile-spantwo">
+                            <div class="createprofile-spantwo-content">
+                                <ProfileInput
+                                    placeholder="geeks.net" name="website"
+                                    icon="fas fa-globe" value={website}
+                                    onChange={onChange}
+                                ></ProfileInput>
+                            </div>
+                            <div class="createprofile-spantwo-content">
+                                <ProfileInput
+                                    placeholder="Github Username" name="githubUserName"
+                                    icon="fab fa-github" value={githubUserName}
+                                    onChange={onChange}
+                                    smallText="This will be used to fetch your repos"
+                                ></ProfileInput>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="createprofile-content">
+
+                        <label>Social</label>
+
+                        <div class="createprofile-spantwo">
+                            <div class="createprofile-spantwo-content">
+                                <ProfileInput
+                                    placeholder="Twitter profile"
+                                    name="twitter" icon="fab fa-twitter"
+                                    value={twitter} onChange={onChange}
+                                ></ProfileInput>
+                            </div>
+                            <div class="createprofile-spantwo-content">
+                                <ProfileInput
+                                    placeholder="LinkedIn profile"
+                                    name="linkedIn" icon="fab fa-linkedin"
+                                    value={linkedIn} onChange={onChange}
+                                ></ProfileInput>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div class="createprofile-spantwo">
+
+                            <div class="createprofile-spantwo-content">
+                                <ProfileInput
+                                    placeholder="Codepen profile"
+                                    name="codepen" icon="fa-brands fa-codepen"
+                                    value={codepen} onChange={onChange}
+                                ></ProfileInput>
+                            </div>
+                            <div class="createprofile-spantwo-content">
+                                <ProfileInput
+                                    placeholder="GitHub profile"
+                                    name="github" icon="fab fa-github"
+                                    value={github} onChange={onChange}
+                                ></ProfileInput>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className="createprofile-content-btn">
+                        <button type="submit" >Submit</button>
+                    </div>
+                </form>
+
+            </div>
+
         </section>
     )
 }

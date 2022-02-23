@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import DefaultLayout from '../../layouts/DefaultLayout'
+import UserLayout from '../../layouts/UserLayout'
 import ProfileHeader from '../../components/profile-header/ProfileHeader'
 import ProfileTabs from '../../components/profile-tab/ProfileTabs'
 import Spinner from '../../components/spinner/Spinner'
@@ -19,7 +19,7 @@ export default function ProfilePage() {
 
     }, [dispatch, navigate, userId])
     return (
-        <DefaultLayout>
+        <UserLayout>
             {loading || !profile ? (
                 <div>
                     <Spinner />
@@ -34,6 +34,6 @@ export default function ProfilePage() {
                     <ProfileTabs profile={profile} userId={userId} />
                 </section>
             )}
-        </DefaultLayout>
+        </UserLayout>
     )
 }

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import DefaultLayout from '../../layouts/DefaultLayout'
+import UserLayout from '../../layouts/UserLayout'
 import Spinner from '../../components/spinner/Spinner'
 import ProfileCard from '../../components/profile-card/ProfileCard'
-import Paginator from '../../components/paginator/Paginator'
+import Paginator from '../../components/paginator/Pagination'
 import { getAllProfiles } from '../../redux/profile/profile.actions'
 import usePaginator from '../../hook/usePaginator'
 
@@ -16,7 +16,7 @@ export default function ProfilesPage() {
         dispatch(getAllProfiles())
     }, [dispatch])
     return (
-        <DefaultLayout>
+        <UserLayout>
             {loading ? (
                 <div>
                     <Spinner />
@@ -32,6 +32,6 @@ export default function ProfilesPage() {
                     <Paginator onChange={setCurrentPage} current={currentPage} pageSize={perPage} total={profiles.length} />
                 </section>
             )}
-        </DefaultLayout>
+        </UserLayout>
     )
 }

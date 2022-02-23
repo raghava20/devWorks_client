@@ -42,7 +42,7 @@ export const signupUser = ({ name, email, password }) => async (dispatch) => {
         dispatch({
             type: SIGNUP_REQUEST
         })
-        const result = await axios.post(`${API_URL}/users`, body, config)
+        const result = await axios.post(`${API_URL}/signup`, body, config)
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: result.data
@@ -64,20 +64,35 @@ export const signupUser = ({ name, email, password }) => async (dispatch) => {
 }
 
 // Login
-export const loginUser = ({ email, password }) => async (dispatch) => {
-    const config = {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }
-    const body = JSON.stringify({ email, password })
+export const loginUser = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: LOGIN_REQUEST })
-        const result = await axios.post(`${API_URL}/auth`, body, config)
+        console.log(email, password)
+        // const config = {
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     }
+        // };
+        // const body = JSON.stringify({ email, password });
+        const result = await axios.post(`${API_URL}/login`, { email: email, password: password }).catch(err => console.log(err))
+
+        // const data = { email: email, password: password }
+        // const result = await fetch(`${API_URL}/login`, {
+        //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //         // 'Content-Type': 'application/x-www-form-urlencoded',
+        //     },
+        //     body: JSON.stringify(data) // body data type must match "Content-Type" header
+        // })
+        //     .then(response => response.json())
+        //     .then(data => console.log(data));
+        console.log(result)
         dispatch({
             type: LOGIN_SUCCESS,
             payload: result.data
         })
+        console.log("exit")
         dispatch(loadUser())
     }
     catch (err) {

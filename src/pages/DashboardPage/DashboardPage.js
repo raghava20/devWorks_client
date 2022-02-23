@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import "./DashboardPage.css"
-import DefaultLayout from "../../layouts/DefaultLayout"
+import UserLayout from "../../layouts/UserLayout"
 import ProfileHeader from "../../components/profile-header/ProfileHeader"
-import ProfileTabs from "../../components/profile-tabs/ProfileTabs"
+import ProfileTabs from "../../components/profile-tab/ProfileTabs"
 import { connect } from "react-redux"
 import Spinner from "../../components/spinner/Spinner"
 import { getCurrentUserProfile } from "../../redux/profile/profile.actions"
@@ -17,21 +17,21 @@ const DashboardPage = ({ getCurrentUserProfile, auth: { user }, profile: { profi
 
     return (
         <>
-            <DefaultLayout>
+            <UserLayout>
                 <div>
-                    {(loading && profile === null) || !user ? (
-                        <div>
+                    {(loading && profile === null) || user ? (
+                        <div className="dashboard-spinner">
                             <Spinner />
                         </div>
                     ) : (
                         <div>
                             <ProfileHeader profile={profile} isDashboard />
-                            <ProfileTabs user={user._id} profile={profile} />
+                            <ProfileTabs user={user} profile={profile} />
                         </div>
                     )
                     }
                 </div>
-            </DefaultLayout>
+            </UserLayout>
         </>
     )
 }

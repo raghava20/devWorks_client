@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import DefaultLayout from '../../layouts/DefaultLayout'
+import UserLayout from '../../layouts/UserLayout'
 import Spinner from '../../components/spinner/Spinner'
 import PostCard from '../../components/post-card/PostCard'
-import Paginator from '../../components/paginator/Paginator'
+import Paginator from '../../components/paginator/Pagination'
 import { getAllPosts } from '../../redux/posts/posts.actions';
 import usePaginator from '../../hook/usePaginator'
 
@@ -16,7 +16,7 @@ export default function PostsPage() {
         dispatch(getAllPosts())
     }, [dispatch])
     return (
-        <DefaultLayout>
+        <UserLayout>
             {loading ? (
                 <div>
                     <Spinner />
@@ -32,6 +32,6 @@ export default function PostsPage() {
                     <Paginator onChange={setCurrentPage} current={currentPage} pageSize={perPage} total={posts.length} />
                 </section>
             )}
-        </DefaultLayout>
+        </UserLayout>
     )
 }

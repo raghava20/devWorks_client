@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../spinner/Spinner";
 import PostCard from "../post-card/PostCard";
 import Paginator from "../paginator/Pagination";
-import { getUserPosts } from "../../redux/posts/posts.actions";
+import { getUserPostById } from "../../redux/posts/posts.actions";
 import usePaginator from "../../hook/usePaginator";
 
 function ProfilePosts({ userId }) {
@@ -12,7 +12,7 @@ function ProfilePosts({ userId }) {
     const { items, currentPage, perPage, setCurrentPage } = usePaginator(posts);
 
     useEffect(() => {
-        dispatch(getUserPosts(userId));
+        dispatch(getUserPostById(userId));
     }, [dispatch, userId]);
 
     return (

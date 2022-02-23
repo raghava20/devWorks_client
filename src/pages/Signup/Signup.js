@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { signupUser } from "../../redux/auth/auth.actions"
 import { setAlert } from "../../redux/alert/alert.actions"
 import { Link, useNavigate } from "react-router-dom"
+import "./Signup.css"
 
 const Signup = ({ setAlert, signupUser, isAuthenticated, isLoading }) => {
     let navigate = useNavigate()
@@ -37,46 +38,47 @@ const Signup = ({ setAlert, signupUser, isAuthenticated, isLoading }) => {
     }
 
     return (
-        <section>
+        <section className="signup-container">
             <div>
                 <LeftPane>SignUp and start to show your works!</LeftPane>
             </div>
-            <div>
-                <div>
-                    <h2>Sign up</h2>
-                    <form onSubmit={onSubmit}>
-                        <div>
-                            <label>Name</label>
-                            <input type="text" required placeholder="Enter name" name="name" value={name} onChange={onChange} />
-                            <span><i className="fas fa-user"></i></span>
-                        </div>
-                        <div>
-                            <label>Email</label>
-                            <input type="email" required placeholder="sample@sample.com" name="email" value={email} onChange={onChange} />
-                            <span><i className="fas fa-envelope"></i></span>
-                        </div>
-                        <div>
-                            <label>Password</label>
-                            <input type="password" required placeholder="Enter password" name="password" value={password} onChange={onChange} />
-                            <span><i className="fas fa-lock"></i></span>
-                        </div>
-                        <div>
-                            <label>Confirm Password</label>
-                            <input type="password" required placeholder="Confirm password" name="confirmPassword" value={confirmPassword} onChange={onChange} />
-                            <span><i className="fas fa-lock"></i></span>
-                        </div>
-                        <div>
-                            <button type="submit">
-                                {isLoading ? (
-                                    <><span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                        Loading...</>) :
-                                    ("Submit")}
-                            </button>
-                        </div>
-
-                    </form>
-                    <p>Already have an account? <Link to="/login">Login</Link></p>
+            <div className="signup-main">
+                <div >
+                    <h2 className="signup-heading">Sign up</h2>
                 </div>
+                <form onSubmit={onSubmit}>
+                    <div className="signup-content">
+                        <label>Name</label>
+                        <input type="text" required placeholder="Enter name" name="name" value={name} onChange={onChange} />
+                        <span><i className="fas fa-user text-muted"></i></span>
+                    </div>
+                    <div className="signup-content">
+                        <label>Email</label>
+                        <input type="email" required placeholder="sample@sample.com" name="email" value={email} onChange={onChange} />
+                        <span><i className="fas fa-envelope text-muted"></i></span>
+                    </div>
+                    <div className="signup-content">
+                        <label>Password</label>
+                        <input type="password" required placeholder="Enter password" name="password" value={password} onChange={onChange} />
+                        <span><i className="fas fa-lock text-muted"></i></span>
+                    </div>
+                    <div className="signup-content">
+                        <label>Confirm Password</label>
+                        <input type="password" required placeholder="Confirm password" name="confirmPassword" value={confirmPassword} onChange={onChange} />
+                        <span><i className="fas fa-lock text-muted"></i></span>
+                    </div>
+                    <div className="signup-content-btn">
+                        <button type="submit">
+                            {isLoading ? (
+                                <><span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    Loading...</>) :
+                                ("Submit")}
+                        </button>
+                    </div>
+
+                </form>
+                <p>Already have an account? <Link to="/login">Login</Link></p>
+
             </div>
         </section>
     )

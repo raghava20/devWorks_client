@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import WithRouter from "../../hook/withRouter"
 import { connect } from "react-redux"
 import { addPost } from "../../redux/post/post.actions"
-import LeftPane from "../../components/left-pane/LeftPane"
-
+import AuthLeftPane from "../../components/left-pane/AuthLeftPane"
+import "../Signup/Signup.css"
 
 const CreatePostPage = ({ addPost, navigate, isLoading }) => {
     const [formData, setFormData] = useState({
@@ -41,74 +41,67 @@ const CreatePostPage = ({ addPost, navigate, isLoading }) => {
 
     return (
         <>
-            <section>
+            <section className="signup-container">
                 <div>
-                    <LeftPane>Great! Everyone will love this post and be excited to taste it.</LeftPane>
-                    <div>
-                        <div>
-                            <h1>Create a Post</h1>
-
-                            <form enctype="multipart/form-data" onSubmit={(e) => onSubmit(e)}>
-                                <div>
-                                    <label>Title</label>
-                                    <div>
-                                        <input type="text" name="title" placeholder="Create a title suit for your post!" value={title} onChange={(e) => onChange(e)} />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Description</label>
-                                    <div>
-                                        <textarea name="description" placeholder="Write a description for your post!" rows="3" value={description} onChange={(e) => onChange(e)}></textarea>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Images</label>
-                                    <div>
-                                        <label>
-                                            <span>
-                                                <span>
-                                                    <i className="fa fa-upload"></i>
-                                                </span>
-                                                <span>Upload upto 5 images</span>
-                                            </span>
-                                            <input type="file" name="images" required multiple placeholder="Create a title suit for your post!" onChange={(e) => onImageSelect(e)} />
-                                        </label>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Technologies Used</label>
-                                    <div>
-                                        <span >
-                                            <i className="fas fa-tag"></i>
-                                        </span>
-                                        <input type="text" name="techTags" required placeholder="React,Angular,Vue" value={techTags} onChange={(e) => onChange(e)} />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Website URL</label>
-                                    <div>
-                                        <span >
-                                            <i className="fas fa-globe"></i>
-                                        </span>
-                                        <input type="text" name="liveUrl" required placeholder="www.google.com" value={liveUrl} onChange={(e) => onChange(e)} />
-                                    </div>
-                                </div>
-                                <div>
-                                    <label>Source Code URL</label>
-                                    <div>
-                                        <span >
-                                            <i className="fab fa-github"></i>
-                                        </span>
-                                        <input type="text" name="codeUrl" required placeholder="www.github.com" value={codeUrl} onChange={(e) => onChange(e)} />
-                                    </div>
-                                </div>
-                                <div>
-                                    <button type="button">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <AuthLeftPane>Great! Everyone will love this post and be excited to taste it.</AuthLeftPane>
                 </div>
+                <div className="signup-main">
+                    <div>
+                        <h1 className="signup-heading">Create a Post</h1>
+                    </div>
+                    <form enctype="multipart/form-data" onSubmit={(e) => onSubmit(e)}>
+                        <div className="signup-content">
+                            <label>Title</label>
+                            <input className="ps-1" type="text" name="title" placeholder="Create a title suit for your post!" value={title} onChange={(e) => onChange(e)} />
+                        </div>
+                        <div className="signup-content">
+                            <label>Description</label>
+
+                            <textarea className="p-1" name="description" placeholder="Write a description for your post!" rows="3" value={description} onChange={(e) => onChange(e)}></textarea>
+
+                        </div>
+                        <div className="signup-content">
+                            <label>Images</label>
+                            <span>
+                                <i className="fa fa-upload"></i>
+                            </span>
+                            <div className="uploadimage-btn-main">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upto 5 images <input className="uploadimage-btn" type="file" name="images" accept=".png, .jpg, .jpeg" required multiple onChange={(e) => onImageSelect(e)} /></div>
+
+                        </div>
+                        <div className="signup-content">
+                            <label>Technologies Used</label>
+
+                            <span >
+                                <i className="fas fa-tag"></i>
+                            </span>
+                            <input type="text" name="techTags" required placeholder="React,Angular,Vue" value={techTags} onChange={(e) => onChange(e)} />
+
+                        </div>
+                        <div className="signup-content">
+                            <label>Website URL</label>
+
+                            <span >
+                                <i className="fas fa-globe"></i>
+                            </span>
+                            <input type="text" name="liveUrl" required placeholder="www.google.com" value={liveUrl} onChange={(e) => onChange(e)} />
+
+                        </div>
+                        <div className="signup-content">
+                            <label>Source Code URL</label>
+
+                            <span >
+                                <i className="fab fa-github"></i>
+                            </span>
+                            <input type="text" name="codeUrl" required placeholder="www.github.com" value={codeUrl} onChange={(e) => onChange(e)} />
+
+                        </div>
+                        <div className="signup-content-btn">
+                            <button type="button">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+
             </section>
         </>
     )

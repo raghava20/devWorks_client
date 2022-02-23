@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import "./Alert.css"
 
 const Alert = ({ alerts }) => {
-    alerts !== null && alerts.length > 0 && alerts.map(alert => {
+    return alerts !== null && alerts.length > 0 && alerts.map(alert => {
         return <div key={alert.id} className={`notification ${alert.alertType}`}>
             {alert.msg}
         </div>

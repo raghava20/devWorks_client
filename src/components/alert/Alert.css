@@ -1,11 +1,13 @@
 .notification {
-    position: sticky;
+    position: absolute;
     width: 100vw;
     top: 0;
     text-align: center;
     margin-bottom: 0 !important;
     border-radius: 0;
     z-index: 100;
+    background-color:  rgb(201, 68, 68);
+    padding: 1rem;
   }
 
   .notification .is-success {

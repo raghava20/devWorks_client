@@ -20,7 +20,7 @@ import Signup from './pages/Signup/Signup';
 import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
 import ResetPassword from './pages/ResetPassword/ResetPassword';
 import ProfilesPage from './pages/ProfilesPage/ProfilesPage';
-import PrivateRoute from "./components/private-route/PrivateRoute"
+// import PrivateRoute from "./components/private-route/PrivateRoute"
 import Alert from "./components/alert/Alert"
 
 function App() {
@@ -29,7 +29,7 @@ function App() {
   }
 
   useEffect(() => {
-    store.dispatch(loadUser());
+    // store.dispatch(loadUser());
   }, []);
 
   return (
@@ -44,20 +44,24 @@ function App() {
             <Route path="forgot-password" element={<ForgotPassword />}></Route>
             <Route path="reset-password/:id" element={<ResetPassword />}></Route>
 
-            <PrivateRoute path="dashboard" element={<DashboardPage />} />
-            <PrivateRoute path="profiles" element={<ProfilesPage />} />
-            <PrivateRoute path="profile" >
-              <PrivateRoute path="create" element={<CreateProfilePage />} />
-              <PrivateRoute path="edit" element={<EditProfilePage />} />
-              <PrivateRoute path=":id" element={<ProfilePage />} />
-            </PrivateRoute>
-            <PrivateRoute path="posts" element={<PostsPage />} />
-            <PrivateRoute path="posts">
-              <PrivateRoute path="create" element={<CreatePostPage />} />
-              <PrivateRoute path=":id" element={<PostPage />} />
-            </PrivateRoute>
-            <PrivateRoute path="feeds" element={<FeedPage />} />
-            <PrivateRoute path="*" element={<PageNotFound />} />
+            <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="profiles" element={<ProfilesPage />} />
+
+            <Route path="profile" >
+              <Route path="create" element={<CreateProfilePage />} />
+              <Route path="edit" element={<EditProfilePage />} />
+              <Route path=":id" element={<ProfilePage />} />
+            </Route>
+
+            <Route path="posts" element={<PostsPage />} />
+
+            <Route path="posts">
+              <Route path="create" element={<CreatePostPage />} />
+              <Route path=":id" element={<PostPage />} />
+            </Route>
+
+            <Route path="feeds" element={<FeedPage />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>
       </Provider>

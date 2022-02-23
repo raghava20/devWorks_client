@@ -25,7 +25,8 @@ const ProfileAbout = ({
                     {bio && (
                         <h1>
                             <i className="fas fa-comment-alt"></i>
-                            {bio}
+                            {/* {bio} */}
+                            bio
                         </h1>
                     )}
                 </div>

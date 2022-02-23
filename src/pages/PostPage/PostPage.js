@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux"
 import WithRouter from "../../hook/withRouter"
-import DefaultLayout from '../../layouts/DefaultLayout'
+import UserLayout from '../../layouts/UserLayout'
 import { getPostById } from '../../redux/post/post.actions'
 import Spinner from '../../components/spinner/Spinner'
 import PostCarousel from '../../components/post-carousel/PostCarousel'
@@ -14,7 +14,7 @@ const PostPage = ({ getPostById, post: { post, loading }, match, navigate }) => 
         getPostById(match.params.id, navigate)
     }, [])
     return (
-        <DefaultLayout>
+        <UserLayout>
             {loading || !post ? (
                 <div>
                     <Spinner />
@@ -26,7 +26,7 @@ const PostPage = ({ getPostById, post: { post, loading }, match, navigate }) => 
                     <PostTiles post={post} />
                 </section>
             )}
-        </DefaultLayout>
+        </UserLayout>
     )
 }
 

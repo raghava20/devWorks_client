@@ -1,8 +1,8 @@
 import React from "react";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import { CommentForm } from "../comment-form/CommentForm"
-import { Comment } from "../comment/Comment"
+import CommentForm from "../comment-form/CommentForm"
+import Comment from "../comment/Comment"
 import { deletePost } from "../../redux/post/post.actions"
 
 const PostTiles = ({

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Spinner from "../../components/spinner/Spinner"
-import DefaultLayout from "../../layouts/DefaultLayout"
+import UserLayout from "../../layouts/UserLayout"
 import PostCard from "../../components/post-card/PostCard"
 import { ReactComponent as NoPostsImage } from "../../images/noposts.svg"
 import { connect } from "react-redux"
@@ -13,7 +13,7 @@ const FeedPage = ({ getFeed, post: { posts, loading } }) => {
 
     return (
         <>
-            <DefaultLayout>
+            <UserLayout>
                 {loading ? (
                     <Spinner />
                 ) : (
@@ -37,7 +37,7 @@ const FeedPage = ({ getFeed, post: { posts, loading } }) => {
                         )}
                     </section>
                 )}
-            </DefaultLayout>
+            </UserLayout>
         </>
     );
 };

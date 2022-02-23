@@ -21,44 +21,49 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
         if (profile.followers.filter((follower) => follower.user._id === auth.user._id).length === 0) {
             return (
                 <button onClick={followUser} className="dashboard-profile-btn">
-                    <i className="fas fa-user-plus mr-2"></i>Follow
+                    <i className="fas fa-user-plus mr-2"></i> Follow
                 </button>
             );
         } else {
             return (
                 <button onClick={unfollowUser} className="dashboard-profile-btn">
-                    <i className="fas fa-user-minus mr-2"></i>Unfollow
+                    <i className="fas fa-user-minus mr-2"></i> Unfollow
                 </button>
             );
         }
     };
 
-    if (!profile) {
-        return (
-            <div id="profile-header" className="full-screen">
-                <div className="text-container">
-                    <h1 className="title">Uh oh ! Profile not yet created.</h1>
-                    <Link to="/profile/new" className="dashboard-profile-btn">
-                        <i className="fas fa-user-cog mr-2"></i>Create Profile
-                    </Link>
-                </div>
-            </div>
-        );
-    }
+    // if (!profile) {
+    //     return (
+    //         <div id="profile-header" className="mt-3">
+    //             <div className="text-container ">
+    //                 <h1 className="title">Uh oh ! Profile not yet created.</h1>
+    //                 <Link to="/profile/create" className="dashboard-profile-btn text-decoration-none">
+    //                     <i className="fas fa-user-cog"></i> Create Profile
+    //                 </Link>
+    //             </div>
+    //         </div>
+    //     );
+    // }
 
     return (
-        <div id="profile-header">
-            <img src={profile.user.avatar} alt="User avatar" />
+        <div id="profile-header" className="mt-3">
+            {/* <img src={profile.user.avatar} alt="User avatar" /> */}
             <div className="text-container">
-                <h1 className="title">{profile.user.name}</h1>
-                <h3 className="subtitle">{profile.bio}</h3>
-                {ownProfile || isDashboard ? (
+                {/* <h1 className="title">{profile.user.name}</h1>
+                <h3 className="subtitle">{profile.bio}</h3> */}
+                <h1 className="title">Name</h1>
+                <h3 className="subtitle">bio</h3>
+                {/* {ownProfile || isDashboard ? (
                     <Link to="/profile/edit" className="dashboard-profile-btn">
-                        <i className="fas fa-user-edit mr-2"></i>Edit Profile
+                        <i className="fas fa-user-edit mr-2"></i> Edit Profile
                     </Link>
                 ) : (
                     followOrUnfollowButton()
-                )}
+                )} */}
+                <Link to="/profile/edit" className="dashboard-profile-btn text-decoration-none">
+                    <i className="fas fa-user-edit mr-2"></i> Edit Profile
+                </Link>
             </div>
         </div>
     );

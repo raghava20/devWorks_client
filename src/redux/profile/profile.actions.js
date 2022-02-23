@@ -26,7 +26,7 @@ export const getCurrentUserProfile = () => async (dispatch) => {
 // Create or update the profile
 export const createProfile = (formData, edit = false) => async (dispatch) => {
     try {
-        const result = await axios.get(`${API_URL}/profile`, formData)
+        const result = await axios.post(`${API_URL}/profile`, formData)
         dispatch({
             type: GET_PROFILE,
             payload: result.data

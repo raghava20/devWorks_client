@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux"
 import { getGithubRepo } from "../../redux/profile/profile.actions"
-import "./GithubRepoCards.css"
+// import "./GithubRepoCards.css"
 
 const GithubRepoCards = ({ getGithubRepos, username, repos }) => {
     useEffect(() => {
