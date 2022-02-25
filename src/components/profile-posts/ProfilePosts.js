@@ -24,9 +24,9 @@ function ProfilePosts({ userId }) {
             ) : (
                 <section className="profile-posts-container">
                     {items.length === 0 ? (
-                        <h1 className="profile-posts-title mt-3 ms-1">
-                            Start to show up your skills!
-                        </h1>
+                        <h3 className="profile-posts-title mt-3 ms-1">
+                            The user has not posted yet.!
+                        </h3>
                     ) : (
                         <div className="post-card-container-main">
                             {items.map((post) => (

@@ -17,10 +17,7 @@ import FeedPage from './pages/FeedPage/FeedPage';
 import LandingPage from './pages/LandingPage/LandingPage';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/Signup';
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword';
-import ResetPassword from './pages/ResetPassword/ResetPassword';
 import ProfilesPage from './pages/ProfilesPage/ProfilesPage';
-// import PrivateRoute from "./components/private-route/PrivateRoute"
 import Alert from "./components/alert/Alert"
 import ContentNotFound from './pages/PageNotFound/ContentNotFound';
 
@@ -42,8 +39,6 @@ function App() {
             <Route path="/" element={<LandingPage />}></Route>
             <Route path="login" element={<Login />}></Route>
             <Route path="signup" element={<Signup />}></Route>
-            <Route path="forgot-password" element={<ForgotPassword />}></Route>
-            <Route path="reset-password/:id" element={<ResetPassword />}></Route>
 
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="profiles" element={<ProfilesPage />} />

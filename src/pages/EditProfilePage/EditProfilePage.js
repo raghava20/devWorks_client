@@ -12,7 +12,6 @@ const EditProfilePage = ({ getCurrentUserProfile, createProfile, profile: { prof
         website: "",
         location: "",
         skills: "",
-        githubUserName: "",
         twitter: "",
         linkedIn: "",
         codepen: "",
@@ -26,8 +25,6 @@ const EditProfilePage = ({ getCurrentUserProfile, createProfile, profile: { prof
             website: loading || !profile.website ? "" : profile.website,
             location: loading || !profile.location ? "" : profile.location,
             skills: loading || !profile.skills ? "" : profile.skills.join(","),
-            githubUsername:
-                loading || !profile.githubUsername ? "" : profile.githubUsername,
             twitter: loading || !profile.social ? "" : profile.social.twitter,
             linkedIn: loading || !profile.social ? "" : profile.social.linkedIn,
             codepen: loading || !profile.social ? "" : profile.social.codepen,
@@ -41,7 +38,6 @@ const EditProfilePage = ({ getCurrentUserProfile, createProfile, profile: { prof
         website,
         location,
         skills,
-        githubUserName,
         twitter,
         linkedIn,
         codepen,
@@ -95,7 +91,7 @@ const EditProfilePage = ({ getCurrentUserProfile, createProfile, profile: { prof
                     </div>
                     <div className="createprofile-content">
 
-                        <label>Website & GitHub</label>
+                        <label>Website</label>
 
                         <div class="createprofile-spantwo">
                             <div class="createprofile-spantwo-content">
@@ -103,14 +99,6 @@ const EditProfilePage = ({ getCurrentUserProfile, createProfile, profile: { prof
                                     placeholder="geeks.net" name="website"
                                     icon="fas fa-globe" value={website}
                                     onChange={onChange}
-                                ></ProfileInput>
-                            </div>
-                            <div class="createprofile-spantwo-content">
-                                <ProfileInput
-                                    placeholder="Github Username" name="githubUserName"
-                                    icon="fab fa-github" value={githubUserName}
-                                    onChange={onChange}
-                                    smallText="This will be used to fetch your repos"
                                 ></ProfileInput>
                             </div>
                         </div>

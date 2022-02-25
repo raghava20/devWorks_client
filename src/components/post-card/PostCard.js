@@ -1,14 +1,11 @@
 
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./PostCard.css"
 
 const PostCard = ({ post }) => {
-    useEffect(() => {
 
-    }, [post])
     return (
-        // <div className="post-card-container-main">
         <div className="post-card">
             <div className="post-card-header">
                 <Link to={`/posts/${post._id}`}>
@@ -37,7 +34,6 @@ const PostCard = ({ post }) => {
             </div>
 
         </div >
-        // </div>
     )
 }
 

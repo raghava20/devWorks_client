@@ -6,8 +6,8 @@
     margin-bottom: 0 !important;
     border-radius: 0;
     z-index: 100;
-    /* background-color:  rgb(201, 68, 68);
-    padding: 1rem; */
+    padding: 2rem;
+    font-size: 1.35em;
   }
 
   .notification.is-success {

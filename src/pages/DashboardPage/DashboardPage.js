@@ -26,7 +26,7 @@ const DashboardPage = ({ getCurrentUserProfile, auth: { user }, profile: { profi
                     ) : (
                         <div>
                             <ProfileHeader profile={profile} isDashboard />
-                            <ProfileTabs user={user} profile={profile} />
+                            <ProfileTabs userId={user._id} profile={profile} />
                         </div>
                     )
                     }

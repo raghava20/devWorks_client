@@ -12,14 +12,13 @@ const CreateProfilePage = ({ createProfile, navigate }) => {
         website: null,
         location: null,
         skills: null,
-        githubUserName: null,
         twitter: null,
         linkedIn: null,
         codepen: null,
         github: null
     })
 
-    const { bio, website, location, skills, githubUserName, twitter, linkedIn, codepen, github } = formData
+    const { bio, website, location, skills, twitter, linkedIn, codepen, github } = formData
 
     const onChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -66,21 +65,13 @@ const CreateProfilePage = ({ createProfile, navigate }) => {
                     </div>
                     <div className="createprofile-content">
 
-                        <label>Website & GitHub</label>
+                        <label>Website</label>
                         <div class="createprofile-spantwo">
                             <div class="createprofile-spantwo-content">
                                 <ProfileInput
                                     placeholder="geeks.net" name="website"
                                     icon="fas fa-globe" value={website}
                                     onChange={onChange}
-                                ></ProfileInput>
-                            </div>
-                            <div class="createprofile-spantwo-content">
-                                <ProfileInput
-                                    placeholder="Github Username" name="githubUserName"
-                                    icon="fab fa-github" value={githubUserName}
-                                    onChange={onChange}
-                                    smallText="This will be used to fetch your repos"
                                 ></ProfileInput>
                             </div>
                         </div>

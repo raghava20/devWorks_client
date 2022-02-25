@@ -6,7 +6,6 @@ const ProfileCard = ({
     profile: { user, social, bio, followers, following, skills },
     navigate
 }) => {
-    console.log(user)
     return (
         <div className="profile-card">
             <div className="profile-card-content" onClick={() => navigate(`/profile/${user._id}`)}>

@@ -1,9 +1,8 @@
 import React from "react";
-import GithubRepoCards from "../github-repo-cards/GithubRepoCards";
 import "./ProfileAbout.css";
 
 const ProfileAbout = ({
-    profile: { bio, website, location, skills, social, githubUsername }
+    profile: { bio, website, location, skills, social }
 }) => {
     return (
         <>
@@ -57,14 +56,6 @@ const ProfileAbout = ({
                     )}
                 </div>
             </section>
-            {githubUsername && (
-                <>
-                    <h5 className="">
-                        Latest GitHub Repos <i className="fab fa-github"></i>
-                    </h5>
-                    <GithubRepoCards username={githubUsername} />
-                </>
-            )}
         </>
     );
 };
