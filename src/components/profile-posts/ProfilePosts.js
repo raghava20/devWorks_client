@@ -18,17 +18,17 @@ function ProfilePosts({ userId }) {
     return (
         <>
             {loading && !items ? (
-                <div className="full-height-spinner">
+                <div className="dashboard-spinner">
                     <Spinner />
                 </div>
             ) : (
-                <section className="container">
+                <section className="profile-posts-container">
                     {items.length === 0 ? (
-                        <h1 className="profile-posts-title">
+                        <h1 className="profile-posts-title mt-3 ms-1">
                             Start to show up your skills!
                         </h1>
                     ) : (
-                        <div className="profile-posts-main">
+                        <div className="post-card-container-main">
                             {items.map((post) => (
                                 <PostCard key={post._id} post={post} />
                             ))}

@@ -8,7 +8,7 @@ const Navbar = ({ logoutUser }) => {
     const isLoggedIn = (
         <>
             <li class="nav-item ">
-                <Link class="nav-link " to="/posts">All Posts</Link>
+                <Link class="nav-link" to="/posts">All Posts</Link>
             </li>
             <li class="nav-item">
                 <Link class="nav-link" to="/feeds" >Feed</Link>

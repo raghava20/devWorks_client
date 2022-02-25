@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { createProfile } from "../../redux/profile/profile.actions"
-import WithRouter from "../../hook/withRouter"
+import { withRouter } from "../../hook/withRouter"
 import AuthLeftPane from "../../components/left-pane/AuthLeftPane"
 import { connect } from "react-redux"
 import ProfileInput from "../../components/profile-input/ProfileInput"
@@ -139,4 +139,4 @@ const CreateProfilePage = ({ createProfile, navigate }) => {
     )
 }
 
-export default connect(null, { createProfile })(WithRouter(CreateProfilePage))
+export default connect(null, { createProfile })(withRouter(CreateProfilePage))

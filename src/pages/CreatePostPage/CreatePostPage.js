@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import WithRouter from "../../hook/withRouter"
+import { withRouter } from "../../hook/withRouter"
 import { connect } from "react-redux"
 import { addPost } from "../../redux/post/post.actions"
 import AuthLeftPane from "../../components/left-pane/AuthLeftPane"
@@ -7,15 +7,15 @@ import "../Signup/Signup.css"
 
 const CreatePostPage = ({ addPost, navigate, isLoading }) => {
     const [formData, setFormData] = useState({
-        title: null,
-        description: null,
-        images: null,
-        techTags: null,
-        liveUrl: null,
-        codeUrl: null
+        title: "",
+        description: "",
+        images: "",
+        techTags: "",
+        liveUrl: "",
+        codeUrl: ""
     })
 
-    const { title, description, images, techTags, liveUrl, codeUrl } = formData
+    const { title, description, images, techTags, liveUrl, codeUrl } = formData;
 
     const onChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -28,14 +28,18 @@ const CreatePostPage = ({ addPost, navigate, isLoading }) => {
     const onSubmit = (e) => {
         e.preventDefault()
         const post = new FormData();
-        post.append("title", title)
-        post.append("description", description)
-        post.append("techTags", techTags)
-        post.append("liveUrl", liveUrl)
-        post.append("codeUrl", codeUrl)
+        post.append("title", title);
+
+        post.append("description", description);
+        post.append("techTags", techTags);
+        post.append("liveUrl", liveUrl);
+        post.append("codeUrl", codeUrl);
         for (const key of Object.keys(images)) {
             post.append("images", images[key])
         }
+        // for (var pair of post.entries()) {
+        //     console.log(pair[0] + ', ' + pair[1]);
+        // }
         addPost(post, navigate)
     }
 
@@ -49,7 +53,7 @@ const CreatePostPage = ({ addPost, navigate, isLoading }) => {
                     <div>
                         <h1 className="signup-heading">Create a Post</h1>
                     </div>
-                    <form enctype="multipart/form-data" onSubmit={(e) => onSubmit(e)}>
+                    <form encType="multipart/form-data" onSubmit={(e) => onSubmit(e)} method="post">
                         <div className="signup-content">
                             <label>Title</label>
                             <input className="ps-1" type="text" name="title" placeholder="Create a title suit for your post!" value={title} onChange={(e) => onChange(e)} />
@@ -92,11 +96,11 @@ const CreatePostPage = ({ addPost, navigate, isLoading }) => {
                             <span >
                                 <i className="fab fa-github"></i>
                             </span>
-                            <input type="text" name="codeUrl" required placeholder="www.github.com" value={codeUrl} onChange={(e) => onChange(e)} />
+                            <input type="text" name="codeUrl" placeholder="www.github.com" value={codeUrl} onChange={(e) => onChange(e)} />
 
                         </div>
                         <div className="signup-content-btn">
-                            <button type="button">Submit</button>
+                            <button type="submit">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -111,4 +115,4 @@ const mapStateToProps = (state) => ({
     isLoading: state.post.loading
 })
 
-export default connect(mapStateToProps, { addPost })(WithRouter(CreatePostPage))
+export default connect(mapStateToProps, { addPost })(withRouter(CreatePostPage))

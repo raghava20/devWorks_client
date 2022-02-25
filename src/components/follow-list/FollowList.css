@@ -1,0 +1,12 @@
+.followlist-container{
+    margin-top:1rem;
+    padding: 1rem;
+}
+.followlist-container img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.followlist-container h2{
+    font-size: 1.2rem;
+}

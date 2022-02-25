@@ -7,10 +7,10 @@ const CommentForm = ({ addComment, postId }) => {
     return (
         <form onSubmit={(e) => {
             e.preventDefault()
-            addComment(postId, { text })
+            addComment(postId, text)
             setText("")
-        }}>
-            <textarea name="text" placeholder="Comment..." value={text} onChange={(e) => setText(e.target.value)} className="comment-form-textarea" required ></textarea>
+        }} className="d-flex flex-column gap-3 mb-2">
+            <textarea name="text" rows="4" placeholder="Comment..." value={text} onChange={(e) => setText(e.target.value)} className="comment-form-textarea" required ></textarea>
             <button type="submit" class="upload-btn">Post</button>
         </form>
     )

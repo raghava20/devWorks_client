@@ -1,13 +1,11 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { connect } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
-import { API_URL } from '../../components/API_URL/API_URL'
 import LeftPane from '../../components/left-pane/LeftPane'
 import { loginUser } from "../../redux/auth/auth.actions"
 import "../Signup/Signup.css"
 
-const Login = ({ loginUser, isAuthenticated, isLoading }) => {
+const Login = ({ loginUser, isAuthenticated }) => {
     let navigate = useNavigate()
 
     const [formData, setFormData] = useState({
@@ -21,9 +19,6 @@ const Login = ({ loginUser, isAuthenticated, isLoading }) => {
     }
     const onSubmit = async (e) => {
         e.preventDefault()
-        console.log(email, password + "pass")
-        // const result = await axios.post(`${API_URL}/login`, { email: email, password: password }).catch(err => console.log(err))
-        // console.log(result)
         loginUser(email, password)
     }
 
@@ -53,10 +48,7 @@ const Login = ({ loginUser, isAuthenticated, isLoading }) => {
                     </div>
                     <p className="signup-content-btn">
                         <button type="submit">
-                            {isLoading ? (
-                                <><span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                    Loading...</>) :
-                                ("Submit")}
+                            Submit
                         </button>
                     </p>
                 </form>
@@ -71,8 +63,7 @@ const Login = ({ loginUser, isAuthenticated, isLoading }) => {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    isLoading: state.auth.loading
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { loginUser })(Login)

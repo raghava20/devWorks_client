@@ -12,11 +12,11 @@ const GithubRepoCards = ({ getGithubRepos, username, repos }) => {
 
         <div className="repo-cards">
             {repos.map(repo => {
-                return <div className="card" >
+                return <div className="card" key={repo.id}>
                     <div className="card-content">
                         <div className="media">
                             <figure>
-                                <img src={repo.owner.avatar.url} alt="Github avatar" />
+                                <img src={repo.owner.avatar_url} alt="Github avatar" />
                             </figure>
                             <div>
                                 <a href={repo.html_url} >{repo.name}</a>
@@ -24,12 +24,13 @@ const GithubRepoCards = ({ getGithubRepos, username, repos }) => {
                             </div>
                             <div className="media-content">
                                 {repo.description ? repo.description : "No description provided"}
+                                <br />
                             </div>
                         </div>
                         <footer>
-                            <p>{repo.stargazers_count}<i className="fas fa-star ml-2"></i></p>
-                            <p>{repo.watchers_count}<i className="fas fa-eye ml-2"></i></p>
-                            <p>{repo.fork_count}<i className="fas fa-code-branch ml-2"></i></p>
+                            <p>{repo.stargazers_count}<i className="fas fa-star"></i></p>
+                            <p>{repo.watchers_count}<i className="fas fa-eye"></i></p>
+                            <p>{repo.forks_count}<i className="fas fa-code-branch"></i></p>
                         </footer>
                     </div>
                 </div>

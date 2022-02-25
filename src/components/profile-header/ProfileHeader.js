@@ -32,41 +32,33 @@ const ProfileHeader = ({ profile, ownProfile, isDashboard, auth, id }) => {
             );
         }
     };
+    return profile ?
+        (
+            <div id="profile-header" className="mt-3">
+                <img src={profile.user.avatar} alt="User avatar" />
+                <div className="text-container">
+                    <h1 className="title">{profile.user.name}</h1>
+                    <h3 className="subtitle">{profile.bio}</h3>
+                    {ownProfile || isDashboard ? (
+                        <Link to="/profile/edit" className="dashboard-profile-btn text-decoration-none">
+                            <i className="fas fa-user-edit mr-2"></i> Edit Profile
+                        </Link>
+                    ) : (
+                        followOrUnfollowButton()
+                    )}
+                </div>
+            </div>
+        )
 
-    // if (!profile) {
-    //     return (
-    //         <div id="profile-header" className="mt-3">
-    //             <div className="text-container ">
-    //                 <h1 className="title">Uh oh ! Profile not yet created.</h1>
-    //                 <Link to="/profile/create" className="dashboard-profile-btn text-decoration-none">
-    //                     <i className="fas fa-user-cog"></i> Create Profile
-    //                 </Link>
-    //             </div>
-    //         </div>
-    //     );
-    // }
-
-    return (
+        :
         <div id="profile-header" className="mt-3">
-            {/* <img src={profile.user.avatar} alt="User avatar" /> */}
-            <div className="text-container">
-                {/* <h1 className="title">{profile.user.name}</h1>
-                <h3 className="subtitle">{profile.bio}</h3> */}
-                <h1 className="title">Name</h1>
-                <h3 className="subtitle">bio</h3>
-                {/* {ownProfile || isDashboard ? (
-                    <Link to="/profile/edit" className="dashboard-profile-btn">
-                        <i className="fas fa-user-edit mr-2"></i> Edit Profile
-                    </Link>
-                ) : (
-                    followOrUnfollowButton()
-                )} */}
-                <Link to="/profile/edit" className="dashboard-profile-btn text-decoration-none">
-                    <i className="fas fa-user-edit mr-2"></i> Edit Profile
+            <div className="text-container ">
+                <h1 className="title">Uh oh ! Profile not yet created.</h1>
+                <Link to="/profile/create" className="dashboard-profile-btn text-decoration-none">
+                    <i className="fas fa-user-cog"></i> Create Profile
                 </Link>
             </div>
         </div>
-    );
 };
 
 const mapStateToProps = (state) => ({

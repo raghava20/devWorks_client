@@ -6,7 +6,7 @@ import { setAlert } from "../../redux/alert/alert.actions"
 import { Link, useNavigate } from "react-router-dom"
 import "./Signup.css"
 
-const Signup = ({ setAlert, signupUser, isAuthenticated, isLoading }) => {
+const Signup = ({ setAlert, signupUser, isAuthenticated }) => {
     let navigate = useNavigate()
     const [formData, setFormData] = useState({
         name: "",
@@ -68,12 +68,7 @@ const Signup = ({ setAlert, signupUser, isAuthenticated, isLoading }) => {
                         <span><i className="fas fa-lock text-muted"></i></span>
                     </div>
                     <div className="signup-content-btn">
-                        <button type="submit">
-                            {isLoading ? (
-                                <><span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                    Loading...</>) :
-                                ("Submit")}
-                        </button>
+                        <button type="submit">Submit</button>
                     </div>
 
                 </form>
@@ -85,8 +80,7 @@ const Signup = ({ setAlert, signupUser, isAuthenticated, isLoading }) => {
 }
 
 const mapStateToProps = (state) => ({
-    isAuthenticated: state.auth.isAuthenticated,
-    isLoading: state.auth.loading
+    isAuthenticated: state.auth.isAuthenticated
 })
 
 export default connect(mapStateToProps, { setAlert, signupUser })(Signup)

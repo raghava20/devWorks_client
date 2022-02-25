@@ -22,14 +22,15 @@ import ResetPassword from './pages/ResetPassword/ResetPassword';
 import ProfilesPage from './pages/ProfilesPage/ProfilesPage';
 // import PrivateRoute from "./components/private-route/PrivateRoute"
 import Alert from "./components/alert/Alert"
+import ContentNotFound from './pages/PageNotFound/ContentNotFound';
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 function App() {
-  if (localStorage.token) {
-    setAuthToken(localStorage.token);
-  }
 
   useEffect(() => {
-    // store.dispatch(loadUser());
+    store.dispatch(loadUser());
   }, []);
 
   return (
@@ -51,6 +52,7 @@ function App() {
               <Route path="create" element={<CreateProfilePage />} />
               <Route path="edit" element={<EditProfilePage />} />
               <Route path=":id" element={<ProfilePage />} />
+              <Route path="404" element={<ContentNotFound />} />
             </Route>
 
             <Route path="posts" element={<PostsPage />} />
@@ -58,6 +60,7 @@ function App() {
             <Route path="posts">
               <Route path="create" element={<CreatePostPage />} />
               <Route path=":id" element={<PostPage />} />
+              <Route path="404" element={<ContentNotFound />} />
             </Route>
 
             <Route path="feeds" element={<FeedPage />} />

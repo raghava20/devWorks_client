@@ -6,6 +6,7 @@ import PostCard from '../../components/post-card/PostCard'
 import Paginator from '../../components/paginator/Pagination'
 import { getAllPosts } from '../../redux/posts/posts.actions';
 import usePaginator from '../../hook/usePaginator'
+import "./PostPage.css"
 
 export default function PostsPage() {
     const dispatch = useDispatch();
@@ -18,16 +19,16 @@ export default function PostsPage() {
     return (
         <UserLayout>
             {loading ? (
-                <div>
+                <div className="dashboard-spinner">
                     <Spinner />
                 </div>
             ) : (
-                <section>
-                    <h2>Recent Posts</h2>
-                    <div>
-                        {items.map(post => {
-                            return <PostCard key={post._id} post={post} />
-                        })}
+                <section className="postpage-container">
+                    <h2 className="mt-3 ms-1">Recent Posts</h2>
+                    <div className="post-card-container-main">
+                        {items.map(post => (
+                            <PostCard key={post._id} post={post} />
+                        ))}
                     </div>
                     <Paginator onChange={setCurrentPage} current={currentPage} pageSize={perPage} total={posts.length} />
                 </section>

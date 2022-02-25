@@ -11,46 +11,46 @@ const PostHeader = ({
     addLike,
     removeLike
 }) => {
-    const [changeLikeText, setChangeLikeTest] = useState("Like");
+    const [changeLikeText, setChangeLikeText] = useState("Like");
 
-    const likeOrUnlike = () => {
+    const likeOrUnlike = (
         <button onClick={() => {
             if (changeLikeText === "Like") {
                 addLike(_id);
-                setChangeLikeTest("Unlike");
+                setChangeLikeText("Unlike");
             } else {
                 removeLike(_id);
-                setChangeLikeTest("Like");
+                setChangeLikeText("Like");
             }
-        }}><i className="fas fa-heart mr-2"></i> {changeLikeText}</button>
-    }
+        }}><i className="fas fa-heart me-1"></i>{changeLikeText}
+        </button>
+    )
     useEffect(() => {
         if (likes.filter((like) => like.user._id === auth.user._id).length === 0) {
-            setChangeLikeTest("Like");
+            setChangeLikeText("Like");
         } else {
-            setChangeLikeTest("Unlike");
+            setChangeLikeText("Unlike");
         }
         // eslint-disable-next-line
     }, [auth.user._id]);
 
     return (
-        <div className="post-header justify-content-between">
+        <div className="post-header">
             <div className="post-header-left">
                 <img src={user.avatar} alt="Post owner avatar" />
                 <div className="post-header-text">
                     <h1>{title}</h1>
                     <h3>
-                        by{" "}
                         <Link
                             to={`/profile/${user._id}`}
-                            className="text-muted"
+                            className="text-muted text-decoration-none"
                         >
                             {user.name}
                         </Link>
                     </h3>
                 </div>
             </div>
-            <div className="post-header-right">{likeOrUnlike()}</div>
+            <div className="post-header-right">{likeOrUnlike}</div>
         </div>
     );
 }

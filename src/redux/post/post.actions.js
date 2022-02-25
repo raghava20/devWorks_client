@@ -4,7 +4,6 @@ import {
     GET_POST, GET_POSTS, POST_ERROR, ADD_POST, ADD_POST_REQUEST,
     UPDATE_LIKES, ADD_COMMENT, REMOVE_COMMENT, DELETE_POST
 } from "./post.types"
-import { useNavigate } from "react-router-dom"
 import { API_URL } from "../../components/API_URL/API_URL"
 
 // to get current user feed
@@ -19,43 +18,44 @@ export const getFeed = () => async (dispatch) => {
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         });
     }
 }
 
 // Add a new post
-export const addPost = (formData) => async (dispatch) => {
+export const addPost = (post, navigate) => async (dispatch) => {
+
     const config = {
         headers: {
             "Content-Type": "multipart/form-data"
         }
     }
     try {
-        const navigate = useNavigate()
         dispatch({ type: ADD_POST_REQUEST })
-        const result = await axios.post(`${API_URL}/posts`, formData, config);
+        const result = await axios.post(`${API_URL}/posts`, post, config);
         dispatch({
             type: ADD_POST,
             payload: result.data
         })
-        navigate("/posts")
         dispatch(setAlert("Successfully created a Post", "is-success"))
+
+        navigate("/posts")
     }
     catch (err) {
         const errors = err.response.data.errors;
         if (errors) {
-            errors.forEach(err => dispatch(setAlert(err.msg, "is-danger")))
+            errors.forEach(err => dispatch(setAlert(err.message, "is-danger")))
         }
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         })
     }
 }
 
 // Get post by Id
-export const getPostById = (postId) => async (dispatch) => {
+export const getPostById = (postId, navigate) => async (dispatch) => {
     try {
         const result = await axios.get(`${API_URL}/posts/${postId}`)
         dispatch({
@@ -66,10 +66,9 @@ export const getPostById = (postId) => async (dispatch) => {
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response, status: err.response }
         })
-        const navigate = useNavigate()
-        navigate('/posts/404')
+        navigate("/posts/404")
     }
 
 }
@@ -86,7 +85,7 @@ export const addLike = (postId) => async (dispatch) => {
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         })
     }
 }
@@ -103,20 +102,16 @@ export const removeLike = (postId) => async (dispatch) => {
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         })
     }
 }
 
 // Add comment by Id
-export const addComment = (postId, formData) => async (dispatch) => {
-    const config = {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }
+export const addComment = (postId, text) => async (dispatch) => {
+    console.log(text)
     try {
-        const result = await axios.post(`${API_URL}/posts/comment/${postId}`, formData, config)
+        const result = await axios.post(`${API_URL}/posts/comment/${postId}`, { text: text })
         dispatch({
             type: ADD_COMMENT,
             payload: result.data
@@ -126,11 +121,11 @@ export const addComment = (postId, formData) => async (dispatch) => {
     catch (err) {
         const errors = err.response.data.errors;
         if (errors) {
-            errors.forEach(err => dispatch(setAlert(err.msg), "is-danger"))
+            errors.forEach(err => dispatch(setAlert(err.message), "is-danger"))
         }
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         })
     }
 }
@@ -143,18 +138,18 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
             type: REMOVE_COMMENT,
             payload: commentId
         })
-        dispatch(setAlert("Comment deleted", "is-success"))
+        dispatch(setAlert("Comment deleted", "is-danger"))
     }
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         })
     }
 }
 
 // Delete a post by id
-export const deletePost = (postId) => async (dispatch) => {
+export const deletePost = (postId, navigate) => async (dispatch) => {
     try {
         await axios.delete(`${API_URL}/posts/${postId}`)
         dispatch({
@@ -162,13 +157,12 @@ export const deletePost = (postId) => async (dispatch) => {
             payload: postId
         })
         dispatch(setAlert("Post deleted", "is-success"))
-        const navigate = useNavigate()
         navigate('/posts')
     }
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response, status: err.response }
         })
     }
 }

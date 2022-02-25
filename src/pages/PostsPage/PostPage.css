@@ -1,0 +1,11 @@
+.postpage-container{
+    width: 85%;
+    margin: 0 auto;
+    
+}
+
+@media (width<= 900px){
+    .postpage-container{
+        width: 100%;
+    }
+}

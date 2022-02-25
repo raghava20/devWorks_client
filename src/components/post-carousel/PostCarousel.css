@@ -3,13 +3,24 @@
   }
   
   .slides {
-    padding: 2rem;
     padding-bottom: 0.5rem;
     border-radius: 20px;
   }
 
   .slides img {
     border-radius: 20px;
+    max-width: 85%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto
+  }
+
+  .slick-dots {
+    width: 100%;
+  }
+  
+  .carousel-container .slick-arrow::before {
+    color: var(--light-blue);
   }
 
   @media screen and (max-width: 900px) {

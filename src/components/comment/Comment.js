@@ -6,23 +6,21 @@ import './Comment.css'
 
 const Comment = ({ comment, postId, auth, commentId, deleteComment }) => {
     return (
-        <article>
+        <article className="comment">
             <figure>
-                <p>{comment.avatar}</p>
-            </figure>
-            <div>
+                <img src={comment.avatar} alt="avatar" />
                 <div>
                     <p>
                         <strong>{comment.name}</strong><br />
-                        <small fromNow><Moment>{comment.date}</Moment></small><br />
+                        <small className="text-muted"><Moment fromNow>{comment.date}</Moment></small><br />
                         {comment.text}
                     </p>
                 </div>
-            </div>
+            </figure>
             {
                 comment.userId === auth.user._id && (
                     <div class="text-right">
-                        <button class="btn btn-outline-danger rounded-circle" onClick={e => deleteComment(postId, commentId)}>x</button>
+                        <button class="btn btn-outline-danger btn-sm  rounded-circle" onClick={e => deleteComment(postId, commentId)}>x</button>
                     </div>
                 )
             }

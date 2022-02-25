@@ -16,12 +16,13 @@ export default function (state = initialState, action) {
     switch (type) {
         case USER_LOADED:
             return { ...state, isAuthenticated: true, loading: false, user: payload }
-        case SIGNUP_REQUEST:
         case SIGNUP_SUCCESS:
+            localStorage.setItem("token", payload.token)
+            return { ...state, ...payload, isAuthenticated: true, loading: false }
         case SIGNUP_FAIL:
         case AUTH_ERROR:
         case LOGIN_REQUEST:
-            return { ...state, loading: false }
+            return { ...state, loading: true }
         case LOGIN_SUCCESS:
             localStorage.setItem("token", payload.token)
             return { ...state, ...payload, isAuthenticated: true, loading: false }

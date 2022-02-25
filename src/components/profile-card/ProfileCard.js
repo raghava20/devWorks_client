@@ -1,22 +1,23 @@
 import React from "react";
-import WithRouter from "../../hook/withRouter";
 import "./ProfileCard.css";
+import { withRouter } from "../../hook/withRouter"
 
 const ProfileCard = ({
     profile: { user, social, bio, followers, following, skills },
-    navigate,
+    navigate
 }) => {
+    console.log(user)
     return (
         <div className="profile-card">
             <div className="profile-card-content" onClick={() => navigate(`/profile/${user._id}`)}>
-                <header className="card-header">
+                <div className="profile-card-header">
                     <img src={user.avatar} alt="User avatar" />
-                </header>
+                </div>
                 <div className="profile-card-body">
                     <div className="media">
                         <div className="media-content">
-                            <p className="title is-4">{user.name}</p>
-                            <p className="subtitle is-6">{bio}</p>
+                            <p className="mt-2"><strong>{user.name}</strong></p>
+                            <p className="text-muted">{bio}</p>
                         </div>
                     </div>
                     <div className="content">
@@ -50,12 +51,12 @@ const ProfileCard = ({
                     </div>
                 </div>
                 <footer className="profile-card-footer">
-                    <p className="card-footer-item">{followers.length} Followers</p>
-                    <p className="card-footer-item">{following.length} Following</p>
+                    <p className="mb-0 text-muted">{followers.length} Followers</p>
+                    <p className="mb-0 text-muted">{following.length} Following</p>
                 </footer>
             </div>
         </div>
     );
 };
 
-export default WithRouter(ProfileCard);
+export default withRouter(ProfileCard);

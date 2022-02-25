@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux"
-import WithRouter from "../../hook/withRouter"
+import { withRouter } from "../../hook/withRouter"
 import { getCurrentUserProfile, createProfile } from "../../redux/profile/profile.actions"
 import AuthLeftPane from "../../components/left-pane/AuthLeftPane"
 import ProfileInput from '../../components/profile-input/ProfileInput'
@@ -19,22 +19,22 @@ const EditProfilePage = ({ getCurrentUserProfile, createProfile, profile: { prof
         github: "",
     });
 
-    // useEffect(() => {
-    //     getCurrentUserProfile();
-    //     setFormData({
-    //         bio: loading || !profile.bio ? "" : profile.bio,
-    //         website: loading || !profile.website ? "" : profile.website,
-    //         location: loading || !profile.location ? "" : profile.location,
-    //         skills: loading || !profile.skills ? "" : profile.skills.join(","),
-    //         githubUsername:
-    //             loading || !profile.githubUsername ? "" : profile.githubUsername,
-    //         twitter: loading || !profile.social ? "" : profile.social.twitter,
-    //         linkedIn: loading || !profile.social ? "" : profile.social.linkedIn,
-    //         codepen: loading || !profile.social ? "" : profile.social.codepen,
-    //         github: loading || !profile.social ? "" : profile.social.github,
-    //     });
+    useEffect(() => {
+        getCurrentUserProfile();
+        setFormData({
+            bio: loading || !profile.bio ? "" : profile.bio,
+            website: loading || !profile.website ? "" : profile.website,
+            location: loading || !profile.location ? "" : profile.location,
+            skills: loading || !profile.skills ? "" : profile.skills.join(","),
+            githubUsername:
+                loading || !profile.githubUsername ? "" : profile.githubUsername,
+            twitter: loading || !profile.social ? "" : profile.social.twitter,
+            linkedIn: loading || !profile.social ? "" : profile.social.linkedIn,
+            codepen: loading || !profile.social ? "" : profile.social.codepen,
+            github: loading || !profile.social ? "" : profile.social.github,
+        });
 
-    // }, [loading]);
+    }, [loading]);
 
     const {
         bio,
@@ -141,7 +141,7 @@ const EditProfilePage = ({ getCurrentUserProfile, createProfile, profile: { prof
                             <div class="createprofile-spantwo-content">
                                 <ProfileInput
                                     placeholder="Codepen profile"
-                                    name="codepen" icon="fas fa-codepen"
+                                    name="codepen" icon="fab fa-codepen"
                                     value={codepen} onChange={onChange}
                                 ></ProfileInput>
                             </div>
@@ -170,4 +170,4 @@ const mapStateToProps = (state) => ({
     profile: state.profile
 })
 
-export default connect(mapStateToProps, { getCurrentUserProfile, createProfile })(WithRouter(EditProfilePage))
+export default connect(mapStateToProps, { getCurrentUserProfile, createProfile })(withRouter(EditProfilePage))

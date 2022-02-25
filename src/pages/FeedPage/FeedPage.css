@@ -1,0 +1,31 @@
+.feedpage-notfound{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top:3rem;
+}
+
+.feedpage-notfound-image{
+    max-width: 600px;
+    height: 600px;
+    margin: 0 auto;
+    overflow-x:auto
+}
+.feedpage-container{
+    width: 85%;
+    margin: 0 auto;
+}
+
+@media (width<= 900px){
+    .feedpage-container{
+        width: 100%;
+    }
+}
+
+@media(width<= 767px){
+    .feedpage-notfound-image{
+       width: 300px;
+       height: 300px;
+    }
+}

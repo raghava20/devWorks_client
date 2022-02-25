@@ -6,16 +6,16 @@
     margin-bottom: 0 !important;
     border-radius: 0;
     z-index: 100;
-    background-color:  rgb(201, 68, 68);
-    padding: 1rem;
+    /* background-color:  rgb(201, 68, 68);
+    padding: 1rem; */
   }
 
-  .notification .is-success {
+  .notification.is-success {
     background-color: rgb(71, 179, 71);
     color: white;
   }
 
-  .notification .is-danger{
+  .notification.is-danger{
     background-color: rgb(201, 68, 68);
     color: white;
   }

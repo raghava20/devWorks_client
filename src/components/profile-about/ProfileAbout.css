@@ -1,0 +1,29 @@
+.profile-about-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.profile-about-content .about-user{
+    margin-bottom:1rem;
+}
+
+.profile-about-content .about-user > * {
+    margin-bottom: 0.5rem;
+  }
+
+.profile-about-content .about-user i {
+    margin-right: 0.5rem;
+    padding: 0.25rem;
+    color: var(--light-blue) !important;
+  }
+
+  .profile-about-content .about-socials {
+    display: flex;
+    justify-content:center;
+    align-items:flex-start;
+    flex-direction: column;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }

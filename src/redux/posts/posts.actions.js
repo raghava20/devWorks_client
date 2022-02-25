@@ -7,7 +7,7 @@ export const getAllPosts = () => async (dispatch) => {
     try {
         const result = await axios.get(`${API_URL}/posts`)
         dispatch({ type: CLEAR_POST })
-        dispatch({
+        return dispatch({
             type: GET_POSTS,
             payload: result.data
         })
@@ -15,7 +15,7 @@ export const getAllPosts = () => async (dispatch) => {
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         })
     }
 }
@@ -32,7 +32,7 @@ export const getUserPostById = (userId) => async (dispatch) => {
     catch (err) {
         dispatch({
             type: POST_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { message: err.response.statusText, status: err.response.status }
         })
     }
 }

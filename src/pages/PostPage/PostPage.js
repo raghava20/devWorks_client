@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux"
-import WithRouter from "../../hook/withRouter"
+import { withRouter } from "../../hook/withRouter"
 import UserLayout from '../../layouts/UserLayout'
 import { getPostById } from '../../redux/post/post.actions'
 import Spinner from '../../components/spinner/Spinner'
@@ -9,18 +9,19 @@ import PostHeader from "../../components/post-header/PostHeader"
 import PostTiles from "../../components/post-tiles/PostTiles"
 
 
-const PostPage = ({ getPostById, post: { post, loading }, match, navigate }) => {
+const PostPage = ({ getPostById, post: { post, loading }, params, navigate }) => {
     useEffect(() => {
-        getPostById(match.params.id, navigate)
+        let { id } = params
+        getPostById(id, navigate)
     }, [])
     return (
         <UserLayout>
             {loading || !post ? (
-                <div>
+                <div className="dashboard-spinner">
                     <Spinner />
                 </div>
             ) : (
-                <section>
+                <section className="postpage-container">
                     <PostHeader post={post} />
                     <PostCarousel images={post.images} />
                     <PostTiles post={post} />
@@ -34,4 +35,4 @@ const mapStateToProps = (state) => ({
     post: state.post
 })
 
-export default connect(mapStateToProps, { getPostById })(WithRouter(PostPage))
+export default withRouter(connect(mapStateToProps, { getPostById })(PostPage))

@@ -1,0 +1,14 @@
+.comment img{
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+.comment{
+    display: flex;
+    justify-content: space-between;
+}
+.comment figure{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}

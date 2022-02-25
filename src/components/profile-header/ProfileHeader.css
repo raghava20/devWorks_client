@@ -4,6 +4,7 @@
     background-image: linear-gradient(to right top, #75e0c4, #6dddc9, #67dacd, #62d6d1, #5ed3d4);
     display: flex;
     justify-content: center;
+    align-items:center;
     padding: 4rem;
     gap: 1rem;
 }
@@ -17,5 +18,18 @@
 @media  (width<= 900px) {
     #profile-header{
         width: 100%;
+    }
+}
+
+@media  (width<= 425px) {
+    #profile-header{
+        padding: 2.5rem;
+        display:flex;
+        align-items: center;
+        justify-content: center
+    }
+    #profile-header img{
+        width: 100px;
+        height: 100px;
     }
 }

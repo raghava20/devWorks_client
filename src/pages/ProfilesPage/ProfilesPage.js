@@ -18,16 +18,15 @@ export default function ProfilesPage() {
     return (
         <UserLayout>
             {loading ? (
-                <div>
+                <div className="dashboard-spinner">
                     <Spinner />
                 </div>
             ) : (
-                <section>
-                    <h2>All Developers profile</h2>
-                    <div>
-                        {items.map(profile => {
-                            return <ProfileCard key={profile._id} profile={profile} />
-                        })}
+                <section className="mt-2">
+                    <div id="profilespage-container">
+                        {items.map(profile => (
+                            <ProfileCard key={profile._id} profile={profile} />
+                        ))}
                     </div>
                     <Paginator onChange={setCurrentPage} current={currentPage} pageSize={perPage} total={profiles.length} />
                 </section>

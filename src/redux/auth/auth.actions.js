@@ -17,7 +17,7 @@ export const loadUser = () => async (dispatch) => {
     }
     try {
         const result = await axios.get(`${API_URL}/auth`);
-        dispatch({
+        return dispatch({
             type: USER_LOADED,
             payload: result.data
         })
@@ -31,31 +31,22 @@ export const loadUser = () => async (dispatch) => {
 
 // Signup
 export const signupUser = ({ name, email, password }) => async (dispatch) => {
-    const config = {
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }
-    const body = JSON.stringify({ name, email, password })
-
     try {
-        dispatch({
-            type: SIGNUP_REQUEST
-        })
-        const result = await axios.post(`${API_URL}/signup`, body, config)
+        const result = await axios.post(`${API_URL}/signup`, { name: name, email: email, password: password })
         dispatch({
             type: SIGNUP_SUCCESS,
             payload: result.data
         });
+        dispatch(setAlert("Account created successfully", "is-success"))
         dispatch(loadUser())
     }
     catch (err) {
-        const errors = err.response.data.errors;
+        const errors = err.response;
         if (errors) {
-            errors.forEach(err => dispatch(setAlert(err.msg, "is-danger")))
+            errors.forEach(err => dispatch(setAlert(err.message), "is-danger"))
         }
-        if (err.response.data.msg) {
-            dispatch(setAlert(err.response.data.msg, "is-danger"))
+        if (err.response) {
+            dispatch(setAlert(err.response, "is-danger"))
         }
         dispatch({
             type: SIGNUP_FAIL
@@ -67,41 +58,20 @@ export const signupUser = ({ name, email, password }) => async (dispatch) => {
 export const loginUser = (email, password) => async (dispatch) => {
     try {
         dispatch({ type: LOGIN_REQUEST })
-        console.log(email, password)
-        // const config = {
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     }
-        // };
-        // const body = JSON.stringify({ email, password });
-        const result = await axios.post(`${API_URL}/login`, { email: email, password: password }).catch(err => console.log(err))
-
-        // const data = { email: email, password: password }
-        // const result = await fetch(`${API_URL}/login`, {
-        //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //         // 'Content-Type': 'application/x-www-form-urlencoded',
-        //     },
-        //     body: JSON.stringify(data) // body data type must match "Content-Type" header
-        // })
-        //     .then(response => response.json())
-        //     .then(data => console.log(data));
-        console.log(result)
+        const result = await axios.post(`${API_URL}/login`, { email: email, password: password })
         dispatch({
             type: LOGIN_SUCCESS,
             payload: result.data
         })
-        console.log("exit")
         dispatch(loadUser())
     }
     catch (err) {
         const errors = err.response.data.errors;
         if (errors) {
-            errors.forEach(err => dispatch(setAlert(err.msg, "is-danger")))
+            errors.forEach(err => dispatch(setAlert(err.message, "is-danger")))
         }
-        if (err.response.data.msg) {
-            dispatch(setAlert(err.response.data.msg, "is-danger"))
+        if (err.response.data.message) {
+            dispatch(setAlert(err.response.data.message, "is-danger"))
         }
         dispatch({
             type: LOGIN_FAIL

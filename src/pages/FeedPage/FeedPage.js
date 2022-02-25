@@ -5,6 +5,7 @@ import PostCard from "../../components/post-card/PostCard"
 import { ReactComponent as NoPostsImage } from "../../images/noposts.svg"
 import { connect } from "react-redux"
 import { getFeed } from "../../redux/post/post.actions"
+import "./FeedPage.css"
 
 const FeedPage = ({ getFeed, post: { posts, loading } }) => {
     useEffect(() => {
@@ -15,24 +16,26 @@ const FeedPage = ({ getFeed, post: { posts, loading } }) => {
         <>
             <UserLayout>
                 {loading ? (
-                    <Spinner />
+                    <div className="dashboard-spinner">
+                        <Spinner />
+                    </div>
                 ) : (
-                    <section id="posts" className="container px-5">
+                    <section className="feedpage-container">
                         {posts.length ? (
                             <>
-                                <h1 className="title">Your Feed</h1>
-                                <div className="columns is-multiline">
+                                <h2 className="title mt-3 ms-1">Your Feed</h2>
+                                <div className="post-card-container-main">
                                     {posts.map((post) => (
                                         <PostCard key={post._id} post={post} />
                                     ))}
                                 </div>
                             </>
                         ) : (
-                            <div className="container is-empty">
-                                <NoPostsImage />
-                                <h1 className="subtitle">
+                            <div className="feedpage-notfound">
+                                <NoPostsImage className="feedpage-notfound-image" />
+                                <h2>
                                     Uh oh ! Your feed is empty. Go on and follow some more users.
-                                </h1>
+                                </h2>
                             </div>
                         )}
                     </section>

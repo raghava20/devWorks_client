@@ -20,8 +20,8 @@ export default function ProfilePage() {
     }, [dispatch, navigate, userId])
     return (
         <UserLayout>
-            {loading || !profile ? (
-                <div>
+            {!profile || loading ? (
+                <div className="dashboard-spinner">
                     <Spinner />
                 </div>
             ) : (

@@ -19,7 +19,7 @@ const DashboardPage = ({ getCurrentUserProfile, auth: { user }, profile: { profi
         <>
             <UserLayout>
                 <div>
-                    {(loading && profile === null) || user ? (
+                    {(loading && profile === null) || !user ? (
                         <div className="dashboard-spinner">
                             <Spinner />
                         </div>
