@@ -56,7 +56,13 @@ const Login = ({ loginUser, isAuthenticated }) => {
                 <p>
                     Don't have an account yet? <Link to="/signup">Sign up</Link>
                 </p>
+                <p style={{ alignItems: "baseline" }}>
+                    Demo Credentials: &nbsp;
+                    <small ><i class="fa-solid fa-envelope"></i></small> demo@gmail.com &nbsp;
+                    <small ><i class="fa-solid fa-lock-open"></i> </small>password
+                </p>
             </div>
+
 
         </section>
     )
